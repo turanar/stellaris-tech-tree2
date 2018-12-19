@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <title>Stellaris 2.2.0 (Le Guin)</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/treant-js/1.0/Treant.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/css/tooltipster.bundle.min.css">
+  <link rel="stylesheet" href="../assets/css/tech-tree.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/treant-js/1.0/Treant.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/js/tooltipster.bundle.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lozad.js/1.7.0/lozad.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.0/jsrender.min.js"></script>
+  <script src="../assets/js/tech-tree2.js"></script>
+
+  <script id="node-template" type="text/x-jsrender">
+    <div class="icon lozad" data-background-image="../assets/img/{{:key}}.png"></div>
+    <p class="node-name" title="{{:name}}">{{:name}}</p>
+    <p class="node-title">
+    {{if tier < 1}}
+      {{:category}} (Starting)
+    {{else}}
+      {{:category}} (Tier {{:tier}})
+    {{/if}}
+    </p>
+    <p class="node-desc">
+    {{if tier > 0}}
+    Cost: <span class="{{:area}}-research">{{:cost}}, Weight: {{:base_weight}}</span>
+    {{/if}}
+    </p>
+    <div class="extra-data">
+    {{if weight_modifiers.length > 0}}
+        <div class="tooltip-header">Weight Modifiers</div>
+        <div class="tooltip-content"><pre>{{:weight_modifiers.join('<br/>')}}</pre></div>
+    {{/if}}
+    {{if potential.length > 0}}
+        <div class="tooltip-header">Requirements</div>
+        <div class="tooltip-content"><pre>{{:potential.join('<br/>')}}</pre></div>
+    {{/if}}
+    {{if prerequisites.length > 1}}
+        <div class="tooltip-header">Required Technologies</div>
+        <div class="tooltip-content">
+        {{for prerequisites}}
+            <img class="left" height="52" width="52" src="//:0" data-src="../assets/img/{{:}}.png"">
+        {{/for}}
+        <div class="left">
+        {{for prerequisites_names}}
+          {{:name}}<br/>
+        {{/for}}
+        </div>
+        </div>
+    {{/if}}
+    {{if feature_unlocks.length > 0}}
+        <div class="tooltip-header">Research Effects</div>
+        <div class="tooltip-content">{{:feature_unlocks.join('<br/>')}}</div>
+    {{/if}}
+    </div>
+  </script>
+</head>
+
+<body class="chart" id="tech-tree">
+</body>
+</html>
