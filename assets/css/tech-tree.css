@@ -14,6 +14,7 @@ body {
 .chart { border: none; overflow: scroll}
 .Treant > .node {
     cursor: pointer;
+    box-sizing: unset;
 }
 .Treant > p { font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-weight: bold; font-size: 12px; }
 
@@ -48,7 +49,7 @@ body {
     background-color: black;
     border: 3px solid #000;
     width: 275px;
-    height: 66px;
+    height: 70px;
     font-family: 'Arimo', Verdana;
     font-size: 12px;
     color: white;
@@ -78,7 +79,10 @@ body {
     /*box-shadow: 0 0 2em #800080;*/
 }
 
-.tech p.node-name {
+.tech .node-title {
+    line-height: 13px;
+}
+.tech .node-name {
     height: 20px;
     font-weight: bold;
     max-width: 184px;
@@ -86,16 +90,17 @@ body {
     overflow: hidden;
     white-space: nowrap;
     z-index: 2;
+    margin-bottom: 2px !important;
 }
 
-.tech p.node-desc {
-    margin-bottom: 2px;
+.tech .node-desc {
+    height: 16px;
 }
 
-.tech p.node-desc img {
+.tech .node-desc img {
     height: 16px;
     width: 16px;
-    margin-top: -2px;
+    margin-top: 0px;
     margin-right: 3px;
 }
 
@@ -164,8 +169,11 @@ ui-tooltip ul li {
     white-space: pre;
 }
 
-pre {
+.ui-tooltip pre {
     font-family: 'Arimo', Verdana;
+    color:white;
+    font-size: 100%;
+    margin-bottom: 3px;
 }
 
 .tooltip-content {
@@ -253,6 +261,19 @@ span.physics-research::before {
 
 .green {
   color:forestgreen;
+}
+
+body {
+    background: #707070 !important;
+    margin-top: 60px !important;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 }
 
 div.fixed {

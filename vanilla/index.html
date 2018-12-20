@@ -6,10 +6,12 @@
   <meta name="viewport" content="width=device-width">
   <title>Stellaris 2.2.0 (Le Guin)</title>
 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/treant-js/1.0/Treant.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/css/tooltipster.bundle.min.css">
   <link rel="stylesheet" href="../assets/css/tech-tree.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/treant-js/1.0/Treant.min.js"></script>
@@ -18,23 +20,24 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/lozad.js/1.7.0/lozad.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.0/jsrender.min.js"></script>
   <script src="../assets/js/tech-tree.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <script id="node-template" type="text/x-jsrender">
     <div class="icon lozad" data-background-image="../assets/img/{{:key}}.png"></div>
-    <p class="node-name" title="{{:name}}">{{:name}}</p>
-    <p class="node-title">
+    <div class="node-name" title="{{:name}}">{{:name}}</div>
+    <div class="node-title">
     {{if tier < 1}}
       {{:category}} (Starting)
     {{else}}
       {{:category}} (Tier {{:tier}})
     {{/if}}
-    </p>
-    <p class="node-desc">
+    </div>
+    <div class="node-desc">
     {{if tier > 0}}
     Cost: <span class="{{:area}}-research">{{:cost}}, Weight: {{:base_weight}}</span>
     {{/if}}
-    </p>
-    <p class="node-desc" style="color:yellow">
+    </div>
+    <div class="node-desc" style="color:yellow">
     {{if is_gestalt === true}}
       <img src="../assets/icons/yes.png"/><img src="../assets/icons/ethic_gestalt_consciousness.png" height="21" width="21"/>
     {{/if}}
@@ -65,7 +68,7 @@
     {{if is_megacorp === false}}
       <img src="../assets/icons/no.png"/><img src="../assets/icons/auth_corporate" height="21" width="21"/>
     {{/if}}
-    </p>
+    </div>
     <div class="extra-data">
     {{if weight_modifiers.length > 0}}
         <div class="tooltip-header">Weight Modifiers</div>
@@ -97,16 +100,20 @@
 </head>
 
 <body>
-  <div class="fixed">
-    <div>
-      Area : <select onchange="load_tree()" id="area_selected">
-      <option value="all">All</option>
-      <option value="physics">Physics</option>
-      <option value="society">Society</option>
-      <option value="engineering">Engineering</option>
-    </select>
+  <nav class="navbar fixed-top  blue darken-1">
+    <div class="nav-wrapper">
+      <ul>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><span id="area-label">Area : All</span><i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
     </div>
-  </div>
+  </nav>
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!" onclick="selected='all';load_tree();">All</a></li>
+    <li class="divider"></li>
+    <li><a href="#!" onclick="selected='physics';load_tree();">Physics</a></li>
+    <li><a href="#!" onclick="selected='society';load_tree();">Society</a></li>
+    <li><a href="#!" onclick="selected='engineering';load_tree();">Engineering</a></li>
+  </ul>
   <div id="tech-tree">
 
   </div>

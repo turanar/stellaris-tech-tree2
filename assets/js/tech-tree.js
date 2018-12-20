@@ -68,6 +68,8 @@ function setup(tech) {
 };
 
 $(document).ready(function() {
+    $(".dropdown-trigger").dropdown({ constrainWidth: false });
+
     load_tree();
 });
 
@@ -92,9 +94,10 @@ function load_tree() {
             _load();
         });
     } else {
-        selected = $('#area_selected').val();
         tree.destroy();
         $('#tech-tree').removeAttr('style');
+        var upper = selected.charAt(0).toUpperCase() + selected.substr(1);
+        $('#area-label').html("Area : " + upper);
         _load();
     }
 }
