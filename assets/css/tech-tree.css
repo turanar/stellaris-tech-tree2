@@ -89,7 +89,14 @@ body {
 }
 
 .tech p.node-desc {
-    margin-bottom: 4px;
+    margin-bottom: 2px;
+}
+
+.tech p.node-desc img {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    margin-right: 3px;
 }
 
 .tech p.description,
@@ -246,4 +253,21 @@ span.physics-research::before {
 
 .green {
   color:forestgreen;
+}
+
+div.fixed {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 8px;
+    font-family: 'Arimo', Verdana;
+    background-color: white;
+    border: 1px solid black;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+div.fixed div {
+    margin: 3px 3px 3px 4px !important;
 }
